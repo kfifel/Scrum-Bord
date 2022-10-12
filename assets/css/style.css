@@ -1,3 +1,8 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 .pace {
     display: none;
 }
@@ -7,4 +12,17 @@
     background: url(../img/cover/cover-scrum-board.png) no-repeat fixed;
     background-size: 360px;
     background-position: right bottom;
+}
+.userStoryCard{
+    width: 100%;
+}
+.card-header{
+    background-color: #5A278C;
+    color: white;
+}
+.card{
+    border:1px solid #5A278C;
+}
+.card+.card{
+    margin-left: 2%;
 }
