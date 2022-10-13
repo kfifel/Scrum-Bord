@@ -13,9 +13,6 @@
     background-size: 360px;
     background-position: right bottom;
 }
-.userStoryCard{
-    width: 100%;
-}
 .card-header{
     background-color: #5A278C;
     color: white;
@@ -23,6 +20,24 @@
 .card{
     border:1px solid #5A278C;
 }
-.card+.card{
-    margin-left: 2%;
+.ourColorButton{
+    background-color: #5A278C;
+}
+@media screen and (max-width: 768px){
+    .divTitle{
+        display: flex;
+        width: 100vw;
+        justify-content: space-between;
+    }
+    .addTask{
+        z-index: 2;
+        position: fixed;
+        bottom:10px;
+        right:10px;
+        margin:0;
+        padding:5px 3px;
+        width: 10vh;
+        font-size: 2rem;
+        border-radius: 50%;
+    }
 }
