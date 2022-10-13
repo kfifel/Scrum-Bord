@@ -23,6 +23,9 @@
 .ourColorButton{
     background-color: #5A278C;
 }
+.modal-footer .pink{
+    background-color: #F192F8;
+}
 @media screen and (max-width: 768px){
     .divTitle{
         display: flex;
