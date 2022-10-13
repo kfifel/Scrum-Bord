@@ -9,11 +9,13 @@
 	
 	<!-- ================== BEGIN core-css ================== -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<link href="assets/css/vendor.min.css" rel="stylesheet" />
 	<link href="assets/css/default/app.min.css" rel="stylesheet" />
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 	<link href="assets/css/style.css" rel="stylesheet" />
+
 	<!-- ================== END core-css ================== -->
 </head>
 <body>
@@ -36,12 +38,17 @@
 				</div>
 
 				<div class="">
-					<button class="btn btn-primary rounded-4 fw-bold ourColorButton addTask"><i class="bx bx-plus"></i><span class="d-none d-md-inline">Add task</span></button>
+					<button class="btn btn-muted rounded-4 fw-bold ourColorButton" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+						<i class="bx bx-plus"></i>
+						<span class="d-none d-md-inline">
+							Add task
+						</span>
+					</button>
 				</div>
 			</div>
 			
-			<div class="row">
-				<div class="col-lg-4 col-md-6 col-sm-12 ">
+			<div class="row justify-content-center">
+				<div class="col-lg-4 col-md-6  w-sm-80 col-sm-12 ">
 					<div class="card mb-5">
 						<div class="card-header bg-teal-900 rounded-lg">
 							<h4 class="">To do (<span id="to-do-tasks-count">5</span>)</h4>
@@ -53,15 +60,15 @@
 								<div class="col-1">
 									<i class="bi bi-exclamation-octagon bx-sm text-red-700"></i>
 								</div>
-								<div class="col-11">
+								<div class="col-11 text-start">
 									<div class="">Keep all the updated requirements in one place</div>
 									<div class="">
-										<div class="">#1 created in 2022-10-08</div>
+										<div class="text-black-100">#1 created in 2022-10-08</div>
 										<div class="" title="There is hardly anything more frustrating than having to look for current requirements in tens of comments under the actual description or having to decide which commenter is actually authorized to change the requirements. The goal here is to keep all the up-to-date requirements and details in the main/primary description of a task. Even though the information in comments may affect initial criteria, just update this primary description accordingly.">There is hardly anything more frustrating than having t...</div>
 									</div>
 									<div class="mt-1">
-										<span class="bg-blue rounded-2 p-1 text-white">High</span>
-										<span class="bg-danger rounded-2 p-1 text-white">Feature</span>
+										<span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+										<span class="bg-black-100 rounded-2 p-1 text-white">Feature</span>
 									</div>
 								</div>
 							</button>
@@ -69,10 +76,10 @@
 								<div class="col-1">
 									<i class="bi bi-exclamation-octagon bx-sm text-red-700"></i>
 								</div>
-								<div class="col-11">
+								<div class="col-11 text-start">
 									<div class="">Consider creating an acceptance criteria list</div>
 									<div class="">
-										<div class="">#2 created in 2022-10-08</div>
+										<div class="text-black-100">#2 created in 2022-10-08</div>
 										<div class="" title="Descriptive requirements are very helpful when it comes to understanding the context of a problem, yet finally it is good to precisely specify what is expected. Thus the developer will not have to look for the actual requirements in a long, descriptive text but he will be able to easily get to the essence. One might find that sometimes — when acceptance criteria are well defined — there is little or no need for any additional information. Example:
 						a) User navigates to “/accounts” and clicks on red download CSV button
 						b) Popup appears with two buttons: “This year” and “Last year”
@@ -80,8 +87,8 @@
 						d) CSV downloaded includes following columns…">Descriptive requirements are very helpful when it comes...</div>
 									</div>
 									<div class="mt-1">
-										<span class="bg-blue rounded-2 p-1 text-white">High</span>
-										<span class="bg-danger rounded-2 p-1 text-white">Feature</span>
+										<span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+										<span class="bg-black-100 rounded-2 p-1 text-white">Feature</span>
 									</div>
 								</div>
 							</button>
@@ -89,15 +96,15 @@
 								<div class="col-1">
 									<i class="bi bi-exclamation-octagon bx-sm text-red-700"></i>
 								</div>
-								<div class="col-11">
+								<div class="col-11 text-start">
 									<div class="">Provide examples, credentials, etc</div>
 									<div class="">
-										<div class="">#3 created in 2022-10-08</div>
+										<div class="text-black-100">#3 created in 2022-10-08</div>
 										<div class="" title="If the expectation is to process or generate some file — attach an example of such a file. If the goal is to integrate what is being developed with some service, ensure your devs have access to this service and its documentation. This list could go on and on — the bottom line is — if there is something that our developer might make use of, try to foresee it and provide them with (access to) it.">If the expectation is to process or generate some file ...</div>
 									</div>
 									<div class="mt-1">
-										<span class="bg-blue rounded-2 p-1 text-white">High</span>
-										<span class="bg-danger rounded-2 p-1 text-white">Feature</span>
+										<span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+										<span class="bg-black-100 rounded-2 p-1 text-white">Feature</span>
 									</div>
 								</div>
 							</button>
@@ -105,15 +112,15 @@
 								<div class="col-1">
 									<i class="bi bi-exclamation-octagon bx-sm text-red-700"></i>
 								</div>
-								<div class="col-11">
+								<div class="col-11 text-start">
 									<div class="">Annotate</div>
 									<div class="">
-										<div class="">#4 created in 2022-10-08</div>
+										<div class="text-black-100">#4 created in 2022-10-08</div>
 										<div class="" title="The mockup provided can sometimes be confusing for developers. Especially if it contains much more content than the scope of the task described. Drop a couple of arrows, outlines and annotations here and there to emphasize what are the important parts of the mockup from the task requirements perspective.">The mockup provided can sometimes be confusing for deve...</div>
 									</div>
 									<div class="mt-1">
-										<span class="bg-blue rounded-2 p-1 text-white">High</span>
-										<span class="bg-danger rounded-2 p-1 text-white">Feature</span>
+										<span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+										<span class="bg-black-100 rounded-2 p-1 text-white">Feature</span>
 									</div>
 								</div>
 							</button>
@@ -121,22 +128,22 @@
 								<div class="col-1">
 									<i class="bi bi-exclamation-octagon bx-sm text-red-700"></i>
 								</div>
-								<div class="col-11">
+								<div class="col-11 text-start">
 									<div class="">Use charts and diagrams</div>
 									<div class="">
-										<div class="">#5 created in 2022-10-08</div>
+										<div class="text-black-100">#5 created in 2022-10-08</div>
 										<div class="" title="While it is not always necessary, sometimes it might be beneficial to prepare a flowchart, a block diagram or some other kind of concept visualization that will render it easy for the developer to comprehend the task and its scope.">While it is not always necessary, sometimes it might be...</div>
 									</div>
 									<div class="mt-1">
-										<span class="bg-blue rounded-2 p-1 text-white">High</span>
-										<span class="bg-danger rounded-2 p-1 text-white">Feature</span>
+										<span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+										<span class="bg-black-100 rounded-2 p-1 text-white">Feature</span>
 									</div>
 								</div>
 							</button>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 ">
+				<div class="col-lg-4 col-md-6 col-sm-12 w-sm-80">
 					<div class="card mb-5">
 						<div class="card-header">
 							<h4 class="">In Progress (<span id="in-progress-tasks-count">4</span>)</h4>
@@ -146,72 +153,72 @@
 							<!-- IN PROGRESS TASKS HERE -->
 							<button class="d-flex userStoryCard w-100 alert-blue rounded-1 pb-2">
 								<div class="col-1">
-									<i class="bi bi-arrow-clockwise bx-sm text-primary "></i>
+									<i class="fa fa-spinner fa-spin	 bx-sm text-primary mt-3 "></i>
 								</div>
-								<div class="col-11">
+								<div class="col-11 text-start">
 									<div class="">Describe steps to reproduce an issue</div>
 									<div class="">
-										<div class="">#6 created in 2022-10-08</div>
+										<div class="text-muted">#6 created in 2022-10-08</div>
 										<div class="" title="including as many details as possible.">including as many details as possible.</div>
 									</div>
 									<div class="mt-1">
-										<span class="bg-blue rounded-2 p-1 text-white">High</span>
-										<span class="bg-danger rounded-2 p-1 text-white">Bug</span>
+										<span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+										<span class="bg-black-100 rounded-2 p-1 text-white">Bug</span>
 									</div>
 								</div>
 							</button>
 							<button class="d-flex userStoryCard w-100 alert-blue rounded-1 mt-1 pb-2">
 								<div class="col-1">
-									<i class="bi bi-arrow-clockwise bx-sm text-primary"></i>
+									<i class="fa fa-spinner fa-spin	 bx-sm text-primary mt-3 "></i>
 								</div>
-								<div class="col-10"> <!-- text-start if you want to make the text start at the beginning -->
+								<div class="col-11 text-start"> <!-- text-start if you want to make the text start at the beginning -->
 									<div class="">Provide access</div>
 									<div class="">
-										<div class="">#7 created in 2022-10-08</div>
+										<div class="text-muted">#7 created in 2022-10-08</div>
 										<div class="" title="to the affected account and services if possible. It might be hard to reproduce the exact environment on a local machine.">to the affected account and services if possible. It mi...</div>
 									</div>
 									<div class="mt-1">
-										<span class="bg-blue rounded-2 p-1 text-white">High</span>
-										<span class="bg-danger rounded-2 p-1 text-white">Bug</span>
+										<span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+										<span class="bg-black-100 rounded-2 p-1 text-white">Bug</span>
 									</div>
 								</div>
 							</button>
 							<button class="d-flex userStoryCard w-100 alert-blue rounded-1 mt-1 pb-2">
 								<div class="col-1">
-									<i class="bi bi-arrow-clockwise bx-sm text-primary"></i>
+									<i class="fa fa-spinner fa-spin	 bx-sm text-primary mt-3 "></i>
 								</div>
-								<div class="col-11">
+								<div class="col-11 text-start">
 									<div class="">Provide environment information</div>
 									<div class="">
 										<div class="text-muted">#8 created in 2022-10-08</div>
 										<div class="" title="i.e., browser version, operating system version etc. Sometimes a list of installed browser plugins and extensions might be helpful as well.">i.e., browser version, operating system version etc. So...</div>
 									</div>
 									<div class="mt-1">
-										<span class="bg-blue rounded-2 p-1 text-white">High</span>
-										<span class="bg-danger rounded-2 p-1 text-white">Bug</span>
+										<span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+										<span class="bg-black-100 rounded-2 p-1 text-white">Bug</span>
 									</div>
 								</div>
 							</button>
 							<button class="d-flex userStoryCard w-100 alert-blue rounded-1 mt-1 pb-2">
 								<div class="col-1">
-									<i class="bi bi-arrow-clockwise bx-sm text-primary"></i>
+									<i class="fa fa-spinner fa-spin	 bx-sm text-primary mt-3 "></i>
 								</div>
-								<div class="col-11">
+								<div class="col-11 text-start">
 									<div class="">Provide a link to an exception and/or a stack trace</div>
 									<div class="">
-										<div class="">#9 created in 2022-10-08</div>
+										<div class="text-muted">#9 created in 2022-10-08</div>
 										<div class="" title="as investigating those is usually the first step to take in resolving the problem.">as investigating those is usually the first step to tak...</div>
 									</div>
 									<div class="mt-1">
-										<span class="bg-blue rounded-2 p-1 text-white">High</span>
-										<span class="bg-danger rounded-2 p-1 text-white">Bug</span>
+										<span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+										<span class="bg-black-100 rounded-2 p-1 text-white">Bug</span>
 									</div>
 								</div>
 							</button>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12 ">
+				<div class="col-lg-4 col-md-6 col-sm-12 w-sm-80">
 					<div class="card mb-5">
 						<div class="card-header">
 							<h4 class="">Done (<span id="done-tasks-count">4</span>)</h4>
@@ -223,15 +230,15 @@
 								<div class="col-1">
 									<i class="bx bx-check-circle bx-md text-green"></i>
 								</div>
-								<div class="col-11">
+								<div class="col-11 text-start">
 									<div class="">Provide access to logs</div>
 									<div class="">
-										<div class="">#10 created in 2022-10-08</div>
+										<div class="text-muted">#10 created in 2022-10-08</div>
 										<div class="" title="as they can be helpful in reproducing the steps that caused the problem in the first place.">as they can be helpful in reproducing the steps that ca...</div>
 									</div>
 									<div class="mt-1">
-										<span class="bg-blue rounded-2 p-1 text-white">High</span>
-										<span class="bg-danger rounded-2 p-1 text-white">Bug</span>
+										<span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+										<span class="bg-black-100 rounded-2 p-1 text-white">Bug</span>
 									</div>
 								</div>
 							</button>
@@ -239,15 +246,15 @@
 								<div class="col-1">
 									<i class="bx bx bx-check-circle bx-md text-green"></i>
 								</div>
-								<div class="col-11">
+								<div class="col-11 text-start">
 									<div class="">Provide access to the affected server or database dump</div>
 									<div class="">
-										<div class="">#11 created in 2022-10-08</div>
+										<div class="text-muted">#11 created in 2022-10-08</div>
 										<div class="" title="If it is possible and when it does not violate security policies, it is usually helpful for the developer to access the original data that might have played a role in the problem.">If it is possible and when it does not violate security...</div>
 									</div>
 									<div class="mt-1">
-										<span class="bg-blue rounded-2 p-1 text-white">High</span>
-										<span class="bg-danger rounded-2 p-1 text-white">Bug</span>
+										<span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+										<span class="bg-black-100 rounded-2 p-1 text-white">Bug</span>
 									</div>
 								</div>
 							</button>
@@ -255,15 +262,15 @@
 								<div class="col-1">
 									<i class="bx bx bx-check-circle bx-md text-green"></i>
 								</div>
-								<div class="col-11">
+								<div class="col-11 text-start">
 									<div class="">Make a screencast</div>
 									<div class="">
-										<div class="">#12 created in 2022-10-08</div>
+										<div class="text-muted">#12 created in 2022-10-08</div>
 										<div class="" title="It is not always necessary, but many times a short screencast (or at least a screenshot) says more than a thousand words. While working on MacOS you can use QuickTime Player for the purpose but there are plenty of tools available for other operating systems as well.">It is not always necessary, but many times a short scre...</div>
 									</div>
 									<div class="mt-1">
-										<span class="bg-blue rounded-2 p-1 text-white">High</span>
-										<span class="bg-danger rounded-2 p-1 text-white">Bug</span>
+										<span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+										<span class="bg-black-100 rounded-2 p-1 text-white">Bug</span>
 									</div>
 								</div>
 							</button>
@@ -271,15 +278,15 @@
 								<div class="col-1">
 									<i class="bx bx bx-check-circle bx-md text-green"></i>
 								</div>
-								<div class="col-11">
+								<div class="col-11 text-start">
 									<div class="">Provide contact information</div>
 									<div class="">
-										<div class="">#13 created in 2022-10-08</div>
+										<div class="text-muted">#13 created in 2022-10-08</div>
 										<div class="" title="of the person that reported the bug. This will not always be possible, but in some cases it might be advantageous and most effective if a developer can have a chat with a person that actually experienced the bug, especially if the steps to reproduce a problem are not deterministic.">of the person that reported the bug. This will not alwa...</div>
 									</div>
 									<div class="mt-1">
-										<span class="bg-blue rounded-2 p-1 text-white">High</span>
-										<span class="bg-danger rounded-2 p-1 text-white">Bug</span>
+										<span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+										<span class="bg-black-100 rounded-2 p-1 text-white">Bug</span>
 									</div>
 								</div>
 							</button>
@@ -299,14 +306,77 @@
 	<!-- END #app -->
 	
 	<!-- TASK MODAL -->
-	<div class="modal fade" id="modal-task">
-		<!-- Modal content goes here -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">add task</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="title" class="col-form-label">Title:</label>
+							<input type="text" class="form-control" id="title">
+						</div>
+						<div class="form-check mt-2">
+							<input class="form-check-input" type="radio" name="type" id="typeFeature" checked>
+							<label class="form-check-label" for="typeFeature">
+								Feature
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="type" id="typeBug" value="typeBug">
+							<label class="form-check-label" for="typeBug">
+								Bug
+							</label>
+						</div>
+						<div class="form-group">
+							<label for="Priority" class="col-form-label">Priority:</label>
+							<select class="form-control" id="Priority">
+								<option>Priority1</option>
+								<option>Priority2</option>
+								<option>Priority3</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="Status" class="col-form-label">Status:</label>
+							<select class="form-control" id="Status">
+								<option>Status1</option>
+								<option>Status2</option>
+								<option>Status3</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="Date" class="col-form-label">Date:</label>
+							<input type="date" id="Date" name="Date" class="form-control">
+ 						</div>
+						<div class="form-group">
+							<label for="Description" class="col-form-label">Description:</label>
+							<textarea class="form-control" id="Description"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Send message</button>
+				</div>
+			</div>
+		</div>
 	</div>
-	
+
+
 	<!-- ================== BEGIN core-js ================== -->
 	<script src="assets/js/vendor.min.js"></script>
 	<script src="assets/js/app.min.js"></script>
 	<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+	<script src="./assets/js/js.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
 	<!-- ================== END core-js ================== -->
 </body>
 </html>
