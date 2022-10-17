@@ -3,6 +3,9 @@
 const userStroys = new Set()
 
 function onLoad(){
+    for(let d of tasks){
+        userStroys.add(d)
+    }
     updateDataInHtml()
 }
 function save(){
