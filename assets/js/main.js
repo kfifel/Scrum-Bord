@@ -1,18 +1,42 @@
+/*const fs = require('fs');
+let usersStory = fs.readFileSync('../data/userStoryData.json')
+var data = JSON.parse(usersStory)
+console.log(data[0])*/
+
+const xml = new XMLHttpRequest();
+xml.open('GET', '../data/userStoryData.json', true)
+
+xml.send()
+
+xml.onload = ()=>{
+    if(xml.status === 200 ) {
+        var data = JSON.parse(xml.responseText)
+        console.log(data)
+    }
+}
+xml.onreadystatechange = function () {
+    console.log(xml.readyState)
+
+}
+// -------------------------------------------------------------------
 const userStroys = new Map();
 let id = 1;
-function addUserStroy() {
+
+function save(){
+    let data = formData();
+    document.getElementById('closePopup').click();
+}
+function formData() {
     resetForm();
-    userStroys.set(
-        id++,{
-        title: document.getElementById("title").value,
-        type: document.querySelector('input[type="radio"]:checked').value,
-        Priority: document.getElementById("Priority").value,
-        Status: document.getElementById("Status").value,
-        Date: document.getElementById("Date").value,
-        Description: document.getElementById("Description").value,
-    });
-    userStroys.forEach(res =>{
-        console.log(res.get(1));
+    return {
+                id: id++,
+                title: document.getElementById("title").value,
+                type: document.querySelector('input[type="radio"]:checked').value,
+                Priority: document.getElementById("Priority").value,
+                Status: document.getElementById("Status").value,
+                Date: document.getElementById("Date").value,
+                Description: document.getElementById("Description").value
+            }
 
    /* document.getElementById('to-do-tasks').innerHTML+=`
         <button class="d-flex userStoryCard w-100 alert-black rounded-1 mt-1 pb-2">
@@ -34,8 +58,6 @@ function addUserStroy() {
             </div>
         </button>
     `; */
-    });
-    document.getElementById('closePopup').click();
 }
 
 function resetForm(){
