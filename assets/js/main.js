@@ -1,65 +1,178 @@
-/*const fs = require('fs');
-let usersStory = fs.readFileSync('../data/userStoryData.json')
-var data = JSON.parse(usersStory)
-console.log(data[0])*/
+// --------------------------- Main code ------------------------------------
 
-const xml = new XMLHttpRequest();
-xml.open('GET', '../data/userStoryData.json', true)
+const userStroys = new Set()
 
-xml.send()
-
-xml.onload = ()=>{
-    if(xml.status === 200 ) {
-        var data = JSON.parse(xml.responseText)
-        console.log(data)
-    }
+function onLoad(){
+    updateDataInHtml()
 }
-xml.onreadystatechange = function () {
-    console.log(xml.readyState)
-
-}
-// -------------------------------------------------------------------
-const userStroys = new Map();
-let id = 1;
-
 function save(){
-    let data = formData();
+    let newData = formData()
+    if(userStroys.add(newData)){
+        addUserStory(newData)
+    }
+    onSuccess()
+    setTimeout(closePopup, 3000)
+}
+function closePopup(){
     document.getElementById('closePopup').click();
 }
+function onSuccess(){
+    document.getElementById("alertAdd")
+        .innerHTML =`<div class="alert alert-success">
+                            <strong>Success!</strong> user Story been added
+                        </div>`
+}
 function formData() {
-    resetForm();
     return {
-                id: id++,
+                id: userStroys.size + 1,
                 title: document.getElementById("title").value,
                 type: document.querySelector('input[type="radio"]:checked').value,
-                Priority: document.getElementById("Priority").value,
-                Status: document.getElementById("Status").value,
-                Date: document.getElementById("Date").value,
-                Description: document.getElementById("Description").value
+                priority: document.getElementById("Priority").value,
+                status: document.getElementById("Status").value,
+                date: document.getElementById("Date").value,
+                description: document.getElementById("Description").value
             }
 
-   /* document.getElementById('to-do-tasks').innerHTML+=`
-        <button class="d-flex userStoryCard w-100 alert-black rounded-1 mt-1 pb-2">
-            <div class="col-1">
-                <i class="bi bi-exclamation-octagon bx-xs text-red-700"></i>
-            </div>
-            <div class="col-11 text-start">
-                <div class=""></div>
-                    <div class="">
-                        <div class="text-black-100">#Hi</div>
-                        <div class="" title="While it is not always necessary, sometimes it might be beneficial to prepare a flowchart, a block diagram or some other kind of concept visualization that will render it easy for the developer to comprehend the task and its scope.">
-                            While it is not always necessary, sometimes it might be...
-                        </div>
-                    </div>
-                    <div class="mt-1">
-                         <span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
-                         <span class="bg-black-100 rounded-2 p-1 text-white">Feature</span>
-                    </div>
-            </div>
-        </button>
-    `; */
 }
 
 function resetForm(){
+    document.getElementById("alertAdd").innerHTML = ""
     document.getElementById('reset').click();
+}
+
+function addUserStory(userStory) {
+    if (userStory.status === "to do") {
+        document.getElementById('to-do-tasks').innerHTML += `
+                 <button class="d-flex userStoryCard w-100 alert-black rounded-1 mt-1 pb-2">
+                     <div class="col-1">
+                         <i class="bi bi-exclamation-octagon bx-xs text-red-700"></i>
+                     </div>
+                     <div class="col-11 text-start">
+                         <div class="">${userStory.title}</div>
+                             <div class="">
+                                 <div class="text-black-100">#${userStory.id} created in ${userStory.date}</div>
+                                 <div class="" title="${userStory.title}">
+                                     ${userStory.description}
+                                 </div>
+                             </div>
+                             <div class="mt-1">
+                                  <span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+                                  <span class="bg-black-100 rounded-2 p-1 text-white">Feature</span>
+                             </div>
+                     </div>
+                 </button>
+            `;
+    } else if (userStory.status === "in progress") {
+        document.getElementById('in-progress-tasks').innerHTML += `
+                <button class="d-flex userStoryCard w-100 alert-blue rounded-1 pb-2 mt-1">
+                     <div class="col-1">
+                         <i class="fa fa-spinner fa-spin\t bx-xs text-primary mt-3 "></i>
+                     </div>
+                     <div class="col-11 text-start">
+                         <div class="">${userStory.title}</div>
+                             <div class="">
+                                 <div class="text-muted">#${userStory.id} created in ${userStory.date}</div>
+                                 <div class="" title="${userStory.title}">
+                                     ${userStory.description}
+                                 </div>
+                             </div>
+                             <div class="mt-1">
+                                  <span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+                                  <span class="bg-black-100 rounded-2 p-1 text-white">Feature</span>
+                             </div>
+                     </div>
+                 </button>
+            `;
+    } else {
+        document.getElementById('done-tasks').innerHTML += `
+                <button class="d-flex userStoryCard w-100 alert-green rounded-1 pb-2 mt-1">
+                     <div class="col-1">
+                         <i class="bx bx-check-circle bx-sm text-green mt-3"></i>
+                     </div>
+                     <div class="col-11 text-start">
+                         <div class="">${userStory.title}</div>
+                             <div class="">
+                                 <div class="text-muted">#${userStory.id} created in ${userStory.date}</div>
+                                 <div class="" title="${userStory.title}">
+                                     ${userStory.description}
+                                 </div>
+                             </div>
+                             <div class="mt-1">
+                                  <span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+                                  <span class="bg-black-100 rounded-2 p-1 text-white">Feature</span>
+                             </div>
+                     </div>
+                 </button>
+            `;
+    }
+}
+
+function updateDataInHtml(){
+    for(let userStory of userStroys){
+        if(userStory.status === "to do"){
+            document.getElementById('to-do-tasks').innerHTML+=`
+                 <button class="d-flex userStoryCard w-100 alert-black rounded-1 mt-1 pb-2">
+                     <div class="col-1">
+                         <i class="bi bi-exclamation-octagon bx-xs text-red-700"></i>
+                     </div>
+                     <div class="col-11 text-start">
+                         <div class="">${userStory.title}</div>
+                             <div class="">
+                                 <div class="text-black-100">#${userStory.id} created in ${userStory.date}</div>
+                                 <div class="" title="${userStory.title}">
+                                     ${userStory.description}
+                                 </div>
+                             </div>
+                             <div class="mt-1">
+                                  <span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+                                  <span class="bg-black-100 rounded-2 p-1 text-white">Feature</span>
+                             </div>
+                     </div>
+                 </button>
+            `;
+        }
+        else if(userStory.status === "in progress"){
+            document.getElementById('in-progress-tasks').innerHTML+=`
+                <button class="d-flex userStoryCard w-100 alert-blue rounded-1 pb-2 mt-1">
+                     <div class="col-1">
+                         <i class="fa fa-spinner fa-spin\t bx-xs text-primary mt-3 "></i>
+                     </div>
+                     <div class="col-11 text-start">
+                         <div class="">${userStory.title}</div>
+                             <div class="">
+                                 <div class="text-muted">#${userStory.id} created in ${userStory.date}</div>
+                                 <div class="" title="${userStory.title}">
+                                     ${userStory.description}
+                                 </div>
+                             </div>
+                             <div class="mt-1">
+                                  <span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+                                  <span class="bg-black-100 rounded-2 p-1 text-white">Feature</span>
+                             </div>
+                     </div>
+                 </button>
+            `;
+        }else{
+            document.getElementById('done-tasks').innerHTML+=`
+                <button class="d-flex userStoryCard w-100 alert-green rounded-1 pb-2 mt-1">
+                     <div class="col-1">
+                         <i class="bx bx-check-circle bx-sm text-green mt-3"></i>
+                     </div>
+                     <div class="col-11 text-start">
+                         <div class="">${userStory.title}</div>
+                             <div class="">
+                                 <div class="text-muted">#${userStory.id} created in ${userStory.date}</div>
+                                 <div class="" title="${userStory.title}">
+                                     ${userStory.description}
+                                 </div>
+                             </div>
+                             <div class="mt-1">
+                                  <span class="bg-gradient-blue-purple rounded-2 p-1 text-white">High</span>
+                                  <span class="bg-black-100 rounded-2 p-1 text-white">Feature</span>
+                             </div>
+                     </div>
+                 </button>
+            `;
+        }
+    }
 }
