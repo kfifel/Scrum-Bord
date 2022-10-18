@@ -19,12 +19,7 @@ function save(){
 function closePopup(){
     document.getElementById('closePopup').click();
 }
-function onSuccess(){
-    document.getElementById("alertAdd")
-        .innerHTML =`<div class="alert alert-success">
-                            <strong>Success!</strong> user Story been added
-                        </div>`
-}
+
 function formData() {
     return {
                 id: ++id,
@@ -194,9 +189,35 @@ function updateDataInHtml(){
 }
 
 function deleteUserStory(id){
-    let userStory = findById(id)
-    userStroys.delete(userStory)
-    updateDataInHtml()
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let userStory = findById(id)
+            userStroys.delete(userStory)
+            updateDataInHtml()
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+            )
+        }else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'Your imaginary file is safe :)',
+                'error'
+            )
+        }
+    })
 }
 
 function findById(id){
@@ -204,4 +225,30 @@ function findById(id){
         if(data.id === id)
             return data;
     }
+}
+
+function onSuccess(){
+    document.getElementById("alertAdd")
+        .innerHTML =`<div class="alert alert-success">
+                            <strong>Success!</strong> user Story been added
+                        </div>`
+    /*
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Your work has been saved',
+      showConfirmButton: false,
+      timer: 1500
+    })
+
+    * */
+}
+
+function onError(){
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href="">Why do I have this issue?</a>'
+    })
 }
