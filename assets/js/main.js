@@ -30,7 +30,6 @@ function formData() {
                 date: document.getElementById("Date").value,
                 description: document.getElementById("Description").value
             }
-
 }
 
 function resetForm(){
@@ -41,7 +40,7 @@ function resetForm(){
 function addUserStory(userStory) {
     if (userStory.status === "to do") {
         document.getElementById('to-do-tasks').innerHTML += `
-                 <button class="d-flex userStoryCard w-100 alert-black rounded-1 mt-1 pb-2">
+                 <button onclick="deleteUserStory(${userStory.id})"  class="d-flex userStoryCard w-100 alert-black rounded-1 mt-1 pb-2">
                      <div class="col-1">
                          <i class="bi bi-exclamation-octagon bx-xs text-red-700"></i>
                      </div>
@@ -50,7 +49,7 @@ function addUserStory(userStory) {
                              <div class="">
                                  <div class="text-black-100">#${userStory.id} created in ${userStory.date}</div>
                                  <div class="" title="${userStory.description}">
-                                    ${userStory.description.substring(0, 80)} ...
+                                    ${ (userStory.description).length > 80 ?  userStory.description.substring(0, 80)+'...' : userStory.description }
                                  </div>
                              </div>
                              <div class="mt-1">
@@ -62,7 +61,7 @@ function addUserStory(userStory) {
             `;
     } else if (userStory.status === "in progress") {
         document.getElementById('in-progress-tasks').innerHTML += `
-                <button class="d-flex userStoryCard w-100 alert-blue rounded-1 pb-2 mt-1">
+                <button onclick="deleteUserStory(${userStory.id})"  class="d-flex userStoryCard w-100 alert-blue rounded-1 pb-2 mt-1">
                      <div class="col-1">
                          <i class="fa fa-spinner fa-spin\t bx-xs text-primary mt-3 "></i>
                      </div>
@@ -71,7 +70,7 @@ function addUserStory(userStory) {
                              <div class="">
                                  <div class="text-muted">#${userStory.id} created in ${userStory.date}</div>
                                  <div class="" title="${userStory.description}">
-                                    ${userStory.description.substring(0, 80)} ...
+                                    ${ (userStory.description).length > 80 ?  userStory.description.substring(0, 80)+'...' : userStory.description }
                                  </div>
                              </div>
                              <div class="mt-1">
@@ -92,7 +91,7 @@ function addUserStory(userStory) {
                              <div class="">
                                  <div class="text-muted">#${userStory.id} created in ${userStory.date}</div>
                                  <div class="" title="${userStory.description}">
-                                    ${userStory.description.substring(0, 80)} ...
+                                    ${ (userStory.description).length > 80 ?  userStory.description.substring(0, 80)+'...' : userStory.description } 
                                  </div>
                              </div>
                              <div class="mt-1">
@@ -126,7 +125,7 @@ function updateDataInHtml(){
                              <div class="">
                                  <div class="text-black-100">#${userStory.id} created in ${userStory.date}</div>
                                  <div class="" title="${userStory.description}">
-                                    ${userStory.description.substring(0, 80)} ...
+                                    ${ (userStory.description).length > 80 ?  userStory.description.substring(0, 80)+'...' : userStory.description }
                                  </div>
                              </div>
                              <div class="mt-1">
@@ -140,7 +139,7 @@ function updateDataInHtml(){
         else if(userStory.status === "in progress"){
             inProgressCount++;
             document.getElementById('in-progress-tasks').innerHTML+=`
-                <button class="d-flex userStoryCard w-100 alert-blue rounded-1 pb-2 mt-1">
+                <button onclick="deleteUserStory(${userStory.id})"  class="d-flex userStoryCard w-100 alert-blue rounded-1 pb-2 mt-1">
                      <div class="col-1">
                          <i class="fa fa-spinner fa-spin\t bx-xs text-primary mt-3 "></i>
                      </div>
@@ -149,7 +148,7 @@ function updateDataInHtml(){
                              <div class="">
                                  <div class="text-muted">#${userStory.id} created in ${userStory.date}</div>
                                  <div class="" title="${userStory.description}">
-                                    ${userStory.description.substring(0, 80)} ...
+                                    ${ (userStory.description).length > 80 ?  userStory.description.substring(0, 80)+'...' : userStory.description }
                                  </div>
                              </div>
                              <div class="mt-1">
@@ -159,10 +158,11 @@ function updateDataInHtml(){
                      </div>
                  </button>
             `;
+
         }else{
             doneCount++;
             document.getElementById('done-tasks').innerHTML+=`
-                <button class="d-flex userStoryCard w-100 alert-green rounded-1 pb-2 mt-1">
+                <button onclick="deleteUserStory(${userStory.id})"  class="d-flex userStoryCard w-100 alert-green rounded-1 pb-2 mt-1">
                      <div class="col-1">
                          <i class="bx bx-check-circle bx-sm text-green mt-3"></i>
                      </div>
@@ -171,7 +171,7 @@ function updateDataInHtml(){
                              <div class="">
                                  <div class="text-muted">#${userStory.id} created in ${userStory.date}</div>
                                  <div class="" title="${userStory.description}">
-                                    ${userStory.description.substring(0, 80)} ...
+                                    ${ (userStory.description).length > 80 ?  userStory.description.substring(0, 80)+'...' : userStory.description }
                                  </div>
                              </div>
                              <div class="mt-1">
@@ -189,15 +189,20 @@ function updateDataInHtml(){
 }
 
 function deleteUserStory(id){
+    let userStorySelect = findById(id);
+
     Swal.fire({
-        title: 'Are you sure?',
+        title: 'Chose an action?',
         text: "You won't be able to revert this!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
+        showDenyButton: true,
+        confirmButtonColor: '#d33',
+        denyButtonColor: '#38c00b',
+        cancelButtonColor: '#3085d6',
+        denyButtonText: `Modify`,
+        confirmButtonText: 'delete!'
+    }).then(async (result) => {
         if (result.isConfirmed) {
             let userStory = findById(id)
             userStroys.delete(userStory)
@@ -207,16 +212,32 @@ function deleteUserStory(id){
                 'Your file has been deleted.',
                 'success'
             )
-        }else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-        ) {
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
             swalWithBootstrapButtons.fire(
                 'Cancelled',
                 'Your imaginary file is safe :)',
                 'error'
             )
-        }
+        } else if (result.isDenied) {
+
+                document.getElementById("titleModify").value = userStorySelect.title
+            if(userStorySelect.type === 'Bug')
+                document.getElementById('typeBugModify').checked = true;
+            else
+                document.getElementById('typeFeatureModify').checked = true;
+            console.log(userStorySelect.priority)
+                document.getElementById("PriorityModify").value = userStorySelect.priority
+                document.getElementById("StatusModify").value= userStorySelect.status
+                document.getElementById("DateModify").value= userStorySelect.date
+                document.getElementById("DescriptionModify").value= userStorySelect.description
+
+                $('#exampleModalModify').modal('show');
+
+                $('#exampleModal').modal('hide');
+            }
+
+         //   Swal.fire('Changes are not saved', '', 'info')
+
     })
 }
 
@@ -225,6 +246,9 @@ function findById(id){
         if(data.id === id)
             return data;
     }
+}
+function updateUserStory(id){
+    alert(id)
 }
 
 function onSuccess(){

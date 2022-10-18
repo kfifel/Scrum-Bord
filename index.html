@@ -93,7 +93,7 @@
 	<!-- END #app -->
 	
 	<!-- TASK MODAL -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -127,7 +127,7 @@
 						</div>
 						<div class="form-group">
 							<label for="Priority" class="col-form-label">Priority:</label>
-							<select class="form-control" id="Priority">
+							<select class="form-select" id="Priority">
 								<option>high</option>
 								<option>medium</option>
 								<option>low</option>
@@ -135,7 +135,7 @@
 						</div>
 						<div class="form-group">
 							<label for="Status" class="col-form-label">Status:</label>
-							<select class="form-control" id="Status">
+							<select class="form-select" id="Status">
 								<option>to do</option>
 								<option>in progress</option>
 								<option>done</option>
@@ -160,8 +160,71 @@
 		</div>
 	</div>
 
+	<div class="modal fade" id="exampleModalModify" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 id="headerH5Modify">add task</h5>
+					<button type="button" class="btn close" data-dismiss="modal" aria-label="Close" id="closePopupModify">
+						<i class="bi bi-x-lg"></i>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="title" class="col-form-label">Title:</label>
+							<input type="text" class="form-control" id="titleModify" placeholder="title">
+						</div>
+						<div class="form-group">
+							<div class="form-check mt-2">
+								<input class="form-check-input" type="radio" name="type" id="typeFeatureModify" value="Feature" checked>
+								<label class="form-check-label" for="typeFeature">
+									Feature
+								</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="type" id="typeBugModify" value="Bug">
+								<label class="form-check-label" for="typeBug">
+									Bug
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="Priority" class="col-form-label">Priority:</label>
+							<select class="form-select" id="PriorityModify">
+								<option>High</option>
+								<option>Medium</option>
+								<option>Low</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="Status" class="col-form-label">Status:</label>
+							<select class="form-select" id="StatusModify">
+								<option>to do</option>
+								<option>in progress</option>
+								<option>done</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="Date" class="col-form-label">Date:</label>
+							<input type="date" id="DateModify" name="Date" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="Description" class="col-form-label">Description:</label>
+							<textarea class="form-control" id="DescriptionModify"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="submit" class="btn pink text-white" onclick="save()">Update</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- ===================== popup de user story's ============================== -->
-	<div class="modal fade" id="userStoryPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="userStoryPopup" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
