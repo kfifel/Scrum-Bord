@@ -139,6 +139,10 @@ function addUserStory(userStory) {
                  </button>
             `;
     }
+
+    document.getElementById('to-do-tasks-count').innerText = toDoCount;
+    document.getElementById('in-progress-tasks-count').innerText = inProgressCount;
+    document.getElementById('done-tasks-count').innerText = doneCount;
 }
 
 function updateDataInHtml(){
@@ -146,7 +150,9 @@ function updateDataInHtml(){
     document.getElementById('in-progress-tasks').innerHTML = "";
     document.getElementById('done-tasks').innerHTML = "";
 
-    alert("updateDataInHtml()")
+    toDoCount = 0;
+    inProgressCount = 0;
+    doneCount = 0;
     for(let userStory of userStroys){
         addUserStory(userStory)
     }
