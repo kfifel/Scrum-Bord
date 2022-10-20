@@ -64,8 +64,9 @@ function formData(idAModifier) {
 
 function resetForm(){
     document.getElementById("alertAdd").innerHTML = ""
-    document.getElementById('reset').click();
-
+    $("#form").trigger( "reset" )
+    document.getElementById("headerH5").innerText = "Add task"
+    document.getElementById("0").innerText= "save"
     document.getElementById("0").setAttribute("onclick", "save()")
 }
 
@@ -191,6 +192,7 @@ function deleteUserStory(id){
         } else if (result.isDenied) {
 
                 document.getElementById("headerH5").innerText = 'Update task'
+            document.getElementById("0").innerText= "modifier"
                 document.getElementById("title").value = userStorySelect.title
             if(userStorySelect.type === 'Bug')
                 document.getElementById('typeBug').checked = true;
