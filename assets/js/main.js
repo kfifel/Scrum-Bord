@@ -251,3 +251,7 @@ function onError(){
         footer: '<a href="">Why do I have this issue?</a>'
     })
 }
+
+function closePopup(){
+    $('#exampleModal').modal('hide');
+}
