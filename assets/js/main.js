@@ -15,17 +15,14 @@ function onLoad(){
 function save(idAModifier){
     let newData = formData(idAModifier)
     if(typeof idAModifier  == "undefined") {
-
-        alert("hi")
         if (userStroys.add(newData)) {
             addUserStory(newData)
             onSuccess()
-            setTimeout(closePopup, 3000)
+            setTimeout(closePopup, 2000)
         }
     }else {
              let elementAModifier = findById(idAModifier)
                 if (userStroys.has(elementAModifier)) {
-                    alert("i'm in")
                     userStroys.delete(elementAModifier);
                     userStroys.add(newData);
                     updateDataInHtml();
@@ -176,13 +173,25 @@ function deleteUserStory(id){
         confirmButtonText: 'delete!'
     }).then(async (result) => {
         if (result.isConfirmed) {
-            userStroys.delete(userStory)
-            updateDataInHtml()
-            Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-            )
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#38c00b',
+                confirmButtonText: 'delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    userStroys.delete(userStory)
+                    updateDataInHtml()
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                }
+            })
         } else if (result.dismiss === Swal.DismissReason.cancel) {
             swal.fire(
                 'Cancelled',
