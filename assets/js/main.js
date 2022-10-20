@@ -30,9 +30,6 @@ function save(idAModifier){
                 }
         }
 }
-function closePopup(){
-    document.getElementById('closePopup').click();
-}
 
 function formData(idAModifier) {
 
