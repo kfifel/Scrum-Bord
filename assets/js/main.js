@@ -1,32 +1,31 @@
 // --------------------------- Main code ------------------------------------
 
-const userStroys = new Set()
-var id = 17;
+const userStroys = new Map()
+var id = 0;
 let toDoCount = 0;
 let inProgressCount = 0;
 let doneCount = 0;
 
-function onLoad(){
     for(let task of tasks){
-        userStroys.add(task)
+        userStroys.set(++id,task)
     }
     updateDataInHtml();
-}
+
 function save(idAModifier){
     let newData = formData(idAModifier)
     if(typeof idAModifier  == "undefined") {
-        if (userStroys.add(newData)) {
+        if (userStroys.set(newData.id, newData)) {
             addUserStory(newData)
+            document.getElementById('closePopup').click()
             onSuccess()
-            setTimeout(closePopup, 2000)
         }
     }else {
-             let elementAModifier = findById(idAModifier)
-                if (userStroys.has(elementAModifier)) {
-                    userStroys.delete(elementAModifier);
-                    userStroys.add(newData);
+                if (userStroys.has(idAModifier)) {
+                    userStroys.set(idAModifier, newData)
                     updateDataInHtml();
                     $('#exampleModal').modal('hide');
+                }else{
+                    onError();
                 }
         }
 }
@@ -57,7 +56,6 @@ function formData(idAModifier) {
 }
 
 function resetForm(){
-    document.getElementById("alertAdd").innerHTML = ""
     $("#form").trigger( "reset" )
     document.getElementById("headerH5").innerText = "Add task"
     document.getElementById("0").innerText= "save"
@@ -148,8 +146,8 @@ function updateDataInHtml(){
     toDoCount = 0;
     inProgressCount = 0;
     doneCount = 0;
-    for(let userStory of userStroys){
-        addUserStory(userStory)
+    for(let [key ,userStory] of userStroys){
+            addUserStory(userStory)
     }
 }
 
@@ -180,7 +178,7 @@ function deleteUserStory(id){
                 confirmButtonText: 'delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    userStroys.delete(userStory)
+                    userStroys.delete(id)
                     updateDataInHtml()
                     Swal.fire(
                         'Deleted!',
@@ -217,27 +215,20 @@ function deleteUserStory(id){
 }
 
 function findById(id){
-    for(let data of userStroys){
-        if(data.id === id)
-            return data;
+    for(let [key ,userStory] of userStroys){
+        if(key === id)
+            return userStory;
     }
 }
 
 function onSuccess(){
-    document.getElementById("alertAdd")
-        .innerHTML =`<div class="alert alert-success">
-                            <strong>Success!</strong> user Story been added
-                        </div>`
-    /*
     Swal.fire({
-      position: 'top-end',
+      position: 'center-center',
       icon: 'success',
-      title: 'Your work has been saved',
+      title: 'Your task has been saved',
       showConfirmButton: false,
       timer: 1500
     })
-
-    * */
 }
 
 function onError(){
