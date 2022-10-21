@@ -1,5 +1,4 @@
 // --------------------------- Main code ------------------------------------
-
 const userStroys = new Map()
 var id = 0;
 let toDoCount = 0;
@@ -66,7 +65,7 @@ function addUserStory(userStory) {
         if(userStory.status === "to do"){
             toDoCount++;
             document.getElementById('to-do-tasks').innerHTML+=`
-                 <button onclick="deleteUserStory(${userStory.id})" class="d-flex userStoryCard w-100 alert-black rounded-1 mt-1 pb-2">
+                 <button id="${userStory.id} " onclick="deleteUserStory(${userStory.id})" class="d-flex userStoryCard w-100 alert-black rounded-1 mt-1 pb-2" draggable="true">
                      <div class="col-1">
                          <i class="bi bi-exclamation-octagon bx-xs text-red-700"></i>
                      </div>
@@ -89,7 +88,7 @@ function addUserStory(userStory) {
         else if(userStory.status === "in progress"){
             inProgressCount++;
             document.getElementById('in-progress-tasks').innerHTML+=`
-                <button onclick="deleteUserStory(${userStory.id})"  class="d-flex userStoryCard w-100 alert-blue rounded-1 pb-2 mt-1">
+                <button id="${userStory.id} onclick="deleteUserStory(${userStory.id})"  class="d-flex userStoryCard w-100 alert-blue rounded-1 pb-2 mt-1" draggable="true">
                      <div class="col-1">
                          <i class="fa fa-spinner fa-spin\t bx-xs text-primary mt-3 "></i>
                      </div>
@@ -112,7 +111,7 @@ function addUserStory(userStory) {
         }else{
             doneCount++;
             document.getElementById('done-tasks').innerHTML+=`
-                <button onclick="deleteUserStory(${userStory.id})"  class="d-flex userStoryCard w-100 alert-green rounded-1 pb-2 mt-1">
+                <button id="${userStory.id} onclick="deleteUserStory(${userStory.id})"  class="d-flex userStoryCard w-100 alert-green rounded-1 pb-2 mt-1" draggable="true">
                      <div class="col-1">
                          <i class="bx bx-check-circle bx-sm text-green mt-3"></i>
                      </div>
@@ -246,4 +245,41 @@ function onError(){
 
 function closePopup(){
     $('#exampleModal').modal('hide');
+}
+
+
+// drage and drop functions
+function onDragStart(e){
+    e.dataTransfer.effectAllowed = 'move'
+    e.dataTransfer.setData('text', e.target.getAttribute("id"))
+}
+function onDragOver(e){
+    return false
+}
+function dropToDo(e){
+    ob = parseInt(e.dataTransfer.getData("text"))
+    let data = findById(ob)
+    data.status = "to do"
+    userStroys.set(ob, data)
+    updateDataInHtml()
+    e.stopPropagation()
+}
+function dropInProgress(e){
+    ob = parseInt(e.dataTransfer.getData("text"))
+    let data = findById(ob)
+    data.status = 'in progress'
+    userStroys.set(ob, data)
+    updateDataInHtml()
+    e.stopPropagation()
+}
+function dropDone(e){
+    ob = parseInt(e.dataTransfer.getData("text"))
+    let data = findById(ob)
+    data.status = "done"
+    userStroys.set(ob, data)
+    updateDataInHtml()
+    e.stopPropagation()
+}
+function onDragLeave(e){
+
 }

@@ -53,8 +53,9 @@
 							<h4 class="">To do (<span id="to-do-tasks-count">0</span>)</h4>
 
 						</div>
-						<div class="card-body" id="to-do-tasks">
+						<div class="card-body" id="to-do-tasks" ondragstart="onDragStart(event)"  ondragover="return onDragOver(event)" ondrop="return dropToDo(event)" ondragleave="onDragLeave()">
 							<!-- TO DO TASKS HERE -->
+
 						</div>
 					</div>
 				</div>
@@ -64,8 +65,9 @@
 							<h4 class="">In Progress (<span id="in-progress-tasks-count">0</span>)</h4>
 
 						</div>
-						<div class="card-body" id="in-progress-tasks">
+						<div class="card-body" id="in-progress-tasks" ondragstart="onDragStart(event)"  ondragover="return onDragOver(event)" ondrop="return dropInProgress(event)" ondragleave="onDragLeave()">
 							<!-- IN PROGRESS TASKS HERE -->
+
 						</div>
 					</div>
 				</div>
@@ -73,10 +75,10 @@
 					<div class="card mb-5">
 						<div class="card-header">
 							<h4 class="">Done (<span id="done-tasks-count">0</span>)</h4>
-
 						</div>
-						<div class="card-body " id="done-tasks">
+						<div class="card-body " id="done-tasks" ondragstart="onDragStart(event)"  ondragover="return onDragOver(event)" ondrop="return dropDone(event)" ondragleave="onDragLeave()">
 							<!-- DONE TASKS HERE -->
+
 						</div>
 					</div>
 				</div>
