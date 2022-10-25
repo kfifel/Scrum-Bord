@@ -65,7 +65,7 @@ function addUserStory(userStory) {
         if(userStory.status === "to do"){
             toDoCount++;
             document.getElementById('to-do-tasks').innerHTML+=`
-                 <button id="${userStory.id} " onclick="deleteUserStory(${userStory.id})" class="d-flex userStoryCard w-100 alert-black rounded-1 mt-1 pb-2" draggable="true">
+                 <button id="${userStory.id} " onclick="editUserStory(${userStory.id})" class="d-flex userStoryCard w-100 alert-black rounded-1 mt-1 pb-2" draggable="true">
                      <div class="col-1">
                          <i class="bi bi-exclamation-octagon bx-xs text-red-700"></i>
                      </div>
@@ -88,7 +88,7 @@ function addUserStory(userStory) {
         else if(userStory.status === "in progress"){
             inProgressCount++;
             document.getElementById('in-progress-tasks').innerHTML+=`
-                <button id="${userStory.id} onclick="deleteUserStory(${userStory.id})"  class="d-flex userStoryCard w-100 alert-blue rounded-1 pb-2 mt-1" draggable="true">
+                <button id="${userStory.id}" onclick="editUserStory(${userStory.id})"  class="d-flex userStoryCard w-100 alert-blue rounded-1 pb-2 mt-1" draggable="true">
                      <div class="col-1">
                          <i class="fa fa-spinner fa-spin\t bx-xs text-primary mt-3 "></i>
                      </div>
@@ -111,7 +111,7 @@ function addUserStory(userStory) {
         }else{
             doneCount++;
             document.getElementById('done-tasks').innerHTML+=`
-                <button id="${userStory.id} onclick="deleteUserStory(${userStory.id})"  class="d-flex userStoryCard w-100 alert-green rounded-1 pb-2 mt-1" draggable="true">
+                <button id="${userStory.id}" onclick="editUserStory(${userStory.id})"  class="d-flex userStoryCard w-100 alert-green rounded-1 pb-2 mt-1" draggable="true">
                      <div class="col-1">
                          <i class="bx bx-check-circle bx-sm text-green mt-3"></i>
                      </div>
@@ -150,9 +150,8 @@ function updateDataInHtml(){
     }
 }
 
-function deleteUserStory(id){
+function editUserStory(id){
     let userStorySelect = findById(id);
-    let userStory = findById(id)
 
     Swal.fire({
         title: 'Chose an action?',
